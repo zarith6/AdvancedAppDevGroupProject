@@ -31,10 +31,20 @@ namespace GroupProjectUIMockUp
         public int OrderType { get; set; }
     }
 
+    public class AutoPart
+    {
+        
+        public int AutoPartID { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Price { get; set; }
+    }
+
     public class AutoPartsDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<AutoPart> Parts { get; set; }
     }
 
 

@@ -78,6 +78,10 @@
     <Compile Include="Migrations\201510221823301_OrderType.Designer.cs">
       <DependentUpon>201510221823301_OrderType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510221854206_PartsTable.cs" />
+    <Compile Include="Migrations\201510221854206_PartsTable.Designer.cs">
+      <DependentUpon>201510221854206_PartsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Part.cs" />
     <Compile Include="PhoneNumber.cs">
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510221823301_OrderType.resx">
       <DependentUpon>201510221823301_OrderType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510221854206_PartsTable.resx">
+      <DependentUpon>201510221854206_PartsTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PhoneNumber.resx">
       <DependentUpon>PhoneNumber.cs</DependentUpon>
