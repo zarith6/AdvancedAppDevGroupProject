@@ -27,7 +27,7 @@ namespace GroupProjectUIMockUp
         //Create new account
         private void button1_Click(object sender, EventArgs e)
         {
-            var mainForm = new Form1(true,"");
+            var mainForm = new Form1(true, new User());
             this.Hide();
             mainForm.Show();
             

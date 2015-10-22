@@ -10,13 +10,21 @@ using System.Windows.Forms;
 
 namespace GroupProjectUIMockUp
 {
+    public enum OrderType
+    {
+        EMAIL = 0,
+        PHONE = 1,
+        WALKIN = 2
+    }
+
     public partial class Form1 : Form
     {
         Part motorOil;
         Part brakePads;
         Part transmissionFluid;
+        bool newUser;
 
-        public Form1(bool isNewUser, string phoneNumber)
+        public Form1(bool isNewUser, User userInfo)
         {
             InitializeComponent();
             motorOil = new Part("Motor Oil", "Oil for your engine", 20.00m);
@@ -29,6 +37,7 @@ namespace GroupProjectUIMockUp
                 emailTextBox.ReadOnly = false;
                 addressTextBox.ReadOnly = false;
                 phoneNumberTextBox.ReadOnly = false;
+                newUser = true;
             }
             else
             {
@@ -37,13 +46,13 @@ namespace GroupProjectUIMockUp
                 phoneNumberTextBox.ReadOnly = true;
                 firstNameTextBox.ReadOnly = true;
                 lastNameTextBox.ReadOnly = true;
-                phoneNumberTextBox.Text = phoneNumber;
-                emailTextBox.Text = "Testdata@testdata.com";
-                addressTextBox.Text = "123 Fake St. Marietta, GA";
-                firstNameTextBox.Text = "John";
-                lastNameTextBox.Text = "Smith";
+                phoneNumberTextBox.Text = userInfo.PhoneNumber;
+                emailTextBox.Text = userInfo.Email;
+                addressTextBox.Text = userInfo.Address;
+                firstNameTextBox.Text = userInfo.FirstName;
+                lastNameTextBox.Text = userInfo.LastName;
                 partDropDownBox.Focus();
-
+                newUser = false;
                 
             }
         }
@@ -107,6 +116,25 @@ namespace GroupProjectUIMockUp
             {
                 productDescriptionLabel.Text = brakePads.Description;
                 productPriceLabel.Text = "$" + brakePads.Price.ToString();
+            }
+        }
+
+        private void submitButton_Click(object sender, EventArgs e)
+        {
+            if (newUser)
+            {
+                using (AutoPartsDbContext db = new AutoPartsDbContext())
+                {
+                    db.Users.Add(new User
+                    {
+                        Address = addressTextBox.Text,
+                        FirstName = firstNameTextBox.Text,
+                        LastName = lastNameTextBox.Text,
+                        PhoneNumber = phoneNumberTextBox.Text,
+                        Email = emailTextBox.Text,
+                    });
+                    db.SaveChanges();
+                }
             }
         }
 

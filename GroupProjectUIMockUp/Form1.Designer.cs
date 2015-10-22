@@ -199,6 +199,7 @@
             this.submitButton.TabIndex = 20;
             this.submitButton.Text = "Submit Order";
             this.submitButton.UseVisualStyleBackColor = true;
+            this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
             // 
             // partDropDownBox2
             // 
