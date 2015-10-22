@@ -255,7 +255,7 @@
             // productDescriptionLabel
             // 
             this.productDescriptionLabel.AutoSize = true;
-            this.productDescriptionLabel.Location = new System.Drawing.Point(12, 169);
+            this.productDescriptionLabel.Location = new System.Drawing.Point(12, 263);
             this.productDescriptionLabel.Name = "productDescriptionLabel";
             this.productDescriptionLabel.Size = new System.Drawing.Size(0, 13);
             this.productDescriptionLabel.TabIndex = 15;
@@ -263,7 +263,7 @@
             // productPriceLabel
             // 
             this.productPriceLabel.AutoSize = true;
-            this.productPriceLabel.Location = new System.Drawing.Point(12, 174);
+            this.productPriceLabel.Location = new System.Drawing.Point(12, 292);
             this.productPriceLabel.Name = "productPriceLabel";
             this.productPriceLabel.Size = new System.Drawing.Size(0, 13);
             this.productPriceLabel.TabIndex = 17;
@@ -278,6 +278,7 @@
             this.emailOrderRadioButton.TabStop = true;
             this.emailOrderRadioButton.Text = "Email Order";
             this.emailOrderRadioButton.UseVisualStyleBackColor = true;
+            this.emailOrderRadioButton.CheckedChanged += new System.EventHandler(this.emailOrderRadioButton_CheckedChanged);
             // 
             // phoneOrderRadioButton
             // 
@@ -289,6 +290,7 @@
             this.phoneOrderRadioButton.TabStop = true;
             this.phoneOrderRadioButton.Text = "Phone Order";
             this.phoneOrderRadioButton.UseVisualStyleBackColor = true;
+            this.phoneOrderRadioButton.CheckedChanged += new System.EventHandler(this.phoneOrderRadioButton_CheckedChanged);
             // 
             // walkinOrderRadioButton
             // 
@@ -300,6 +302,7 @@
             this.walkinOrderRadioButton.TabStop = true;
             this.walkinOrderRadioButton.Text = "Walk-in Order";
             this.walkinOrderRadioButton.UseVisualStyleBackColor = true;
+            this.walkinOrderRadioButton.CheckedChanged += new System.EventHandler(this.walkinOrderRadioButton_CheckedChanged);
             // 
             // Form1
             // 

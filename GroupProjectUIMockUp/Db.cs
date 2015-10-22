@@ -24,11 +24,11 @@ namespace GroupProjectUIMockUp
     {
         public int OrderID { get; set; }
         public string OrderContents { get; set; }
-        public string OrderQuantities { get; set; }
+        public int OrderQuantities { get; set; }
         public int UserID { get; set; }
         [ForeignKey("UserID")]
         public virtual User User { get; set; }
-        public int OrderType { get; set; }
+        public OrderType OrderType { get; set; }
     }
 
     public class AutoPart
@@ -37,7 +37,7 @@ namespace GroupProjectUIMockUp
         public int AutoPartID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Price { get; set; }
+        public decimal Price { get; set; }
     }
 
     public class AutoPartsDbContext : DbContext

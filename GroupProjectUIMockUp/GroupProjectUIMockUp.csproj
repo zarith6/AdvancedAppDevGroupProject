@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddParts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddParts.Designer.cs">
+      <DependentUpon>AddParts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Db.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -82,7 +88,20 @@
     <Compile Include="Migrations\201510221854206_PartsTable.Designer.cs">
       <DependentUpon>201510221854206_PartsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510221940377_FixedPriceAttribute.cs" />
+    <Compile Include="Migrations\201510221940377_FixedPriceAttribute.Designer.cs">
+      <DependentUpon>201510221940377_FixedPriceAttribute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510222007210_FixedOrderQuantities.cs" />
+    <Compile Include="Migrations\201510222007210_FixedOrderQuantities.Designer.cs">
+      <DependentUpon>201510222007210_FixedOrderQuantities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510222012061_OrderTypeFix.cs" />
+    <Compile Include="Migrations\201510222012061_OrderTypeFix.Designer.cs">
+      <DependentUpon>201510222012061_OrderTypeFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="OrderType.cs" />
     <Compile Include="Part.cs" />
     <Compile Include="PhoneNumber.cs">
       <SubType>Form</SubType>
@@ -92,6 +111,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddParts.resx">
+      <DependentUpon>AddParts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +131,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510221854206_PartsTable.resx">
       <DependentUpon>201510221854206_PartsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510221940377_FixedPriceAttribute.resx">
+      <DependentUpon>201510221940377_FixedPriceAttribute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510222007210_FixedOrderQuantities.resx">
+      <DependentUpon>201510222007210_FixedOrderQuantities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510222012061_OrderTypeFix.resx">
+      <DependentUpon>201510222012061_OrderTypeFix.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PhoneNumber.resx">
       <DependentUpon>PhoneNumber.cs</DependentUpon>
