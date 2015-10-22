@@ -88,7 +88,7 @@
             this.Controls.Add(this.phoneNumberTextBox);
             this.Controls.Add(this.label1);
             this.Name = "PhoneNumber";
-            this.Text = "PhoneNumber";
+            this.Text = "Phone Number";
             this.ResumeLayout(false);
             this.PerformLayout();
 
