@@ -41,21 +41,17 @@
             this.addressTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.partQuantityNumBox = new System.Windows.Forms.NumericUpDown();
             this.submitButton = new System.Windows.Forms.Button();
-            this.partDropDownBox2 = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.partDropDownBox3 = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.partDropDownBox4 = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.productDescriptionLabel = new System.Windows.Forms.Label();
-            this.productPriceLabel = new System.Windows.Forms.Label();
             this.emailOrderRadioButton = new System.Windows.Forms.RadioButton();
             this.phoneOrderRadioButton = new System.Windows.Forms.RadioButton();
             this.walkinOrderRadioButton = new System.Windows.Forms.RadioButton();
+            this.selectedItemsListBox = new System.Windows.Forms.ListBox();
+            this.removeItemButton = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.orderTotalLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.partQuantityNumBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -130,9 +126,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(213, 48);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 13);
+            this.label5.Size = new System.Drawing.Size(144, 13);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Phone number:";
+            this.label5.Text = "Phone number: (xxx-xxx-xxxx)";
             // 
             // phoneNumberTextBox
             // 
@@ -166,15 +162,6 @@
             this.label7.TabIndex = 14;
             this.label7.Text = "Product Description:";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 279);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(74, 13);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Product Price:";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -195,62 +182,11 @@
             // 
             this.submitButton.Location = new System.Drawing.Point(216, 257);
             this.submitButton.Name = "submitButton";
-            this.submitButton.Size = new System.Drawing.Size(141, 40);
+            this.submitButton.Size = new System.Drawing.Size(138, 40);
             this.submitButton.TabIndex = 20;
             this.submitButton.Text = "Submit Order";
             this.submitButton.UseVisualStyleBackColor = true;
             this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
-            // 
-            // partDropDownBox2
-            // 
-            this.partDropDownBox2.FormattingEnabled = true;
-            this.partDropDownBox2.Location = new System.Drawing.Point(214, 143);
-            this.partDropDownBox2.Name = "partDropDownBox2";
-            this.partDropDownBox2.Size = new System.Drawing.Size(138, 21);
-            this.partDropDownBox2.TabIndex = 22;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(211, 127);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(61, 13);
-            this.label8.TabIndex = 21;
-            this.label8.Text = "Select part:";
-            // 
-            // partDropDownBox3
-            // 
-            this.partDropDownBox3.FormattingEnabled = true;
-            this.partDropDownBox3.Location = new System.Drawing.Point(214, 183);
-            this.partDropDownBox3.Name = "partDropDownBox3";
-            this.partDropDownBox3.Size = new System.Drawing.Size(138, 21);
-            this.partDropDownBox3.TabIndex = 24;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(211, 167);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(61, 13);
-            this.label11.TabIndex = 23;
-            this.label11.Text = "Select part:";
-            // 
-            // partDropDownBox4
-            // 
-            this.partDropDownBox4.FormattingEnabled = true;
-            this.partDropDownBox4.Location = new System.Drawing.Point(216, 223);
-            this.partDropDownBox4.Name = "partDropDownBox4";
-            this.partDropDownBox4.Size = new System.Drawing.Size(138, 21);
-            this.partDropDownBox4.TabIndex = 26;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(213, 207);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(61, 13);
-            this.label12.TabIndex = 25;
-            this.label12.Text = "Select part:";
             // 
             // productDescriptionLabel
             // 
@@ -259,14 +195,6 @@
             this.productDescriptionLabel.Name = "productDescriptionLabel";
             this.productDescriptionLabel.Size = new System.Drawing.Size(0, 13);
             this.productDescriptionLabel.TabIndex = 15;
-            // 
-            // productPriceLabel
-            // 
-            this.productPriceLabel.AutoSize = true;
-            this.productPriceLabel.Location = new System.Drawing.Point(12, 292);
-            this.productPriceLabel.Name = "productPriceLabel";
-            this.productPriceLabel.Size = new System.Drawing.Size(0, 13);
-            this.productPriceLabel.TabIndex = 17;
             // 
             // emailOrderRadioButton
             // 
@@ -304,25 +232,56 @@
             this.walkinOrderRadioButton.UseVisualStyleBackColor = true;
             this.walkinOrderRadioButton.CheckedChanged += new System.EventHandler(this.walkinOrderRadioButton_CheckedChanged);
             // 
+            // selectedItemsListBox
+            // 
+            this.selectedItemsListBox.FormattingEnabled = true;
+            this.selectedItemsListBox.Location = new System.Drawing.Point(216, 129);
+            this.selectedItemsListBox.Name = "selectedItemsListBox";
+            this.selectedItemsListBox.Size = new System.Drawing.Size(138, 121);
+            this.selectedItemsListBox.TabIndex = 30;
+            // 
+            // removeItemButton
+            // 
+            this.removeItemButton.Location = new System.Drawing.Point(363, 128);
+            this.removeItemButton.Name = "removeItemButton";
+            this.removeItemButton.Size = new System.Drawing.Size(43, 41);
+            this.removeItemButton.TabIndex = 31;
+            this.removeItemButton.Text = "X";
+            this.removeItemButton.UseVisualStyleBackColor = true;
+            this.removeItemButton.Click += new System.EventHandler(this.removeItemButton_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(9, 275);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.TabIndex = 32;
+            this.label8.Text = "Order Total:";
+            // 
+            // orderTotalLabel
+            // 
+            this.orderTotalLabel.AutoSize = true;
+            this.orderTotalLabel.Location = new System.Drawing.Point(9, 290);
+            this.orderTotalLabel.Name = "orderTotalLabel";
+            this.orderTotalLabel.Size = new System.Drawing.Size(0, 13);
+            this.orderTotalLabel.TabIndex = 33;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(410, 312);
+            this.Controls.Add(this.orderTotalLabel);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.removeItemButton);
+            this.Controls.Add(this.selectedItemsListBox);
             this.Controls.Add(this.walkinOrderRadioButton);
             this.Controls.Add(this.phoneOrderRadioButton);
             this.Controls.Add(this.emailOrderRadioButton);
-            this.Controls.Add(this.partDropDownBox4);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.partDropDownBox3);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.partDropDownBox2);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.submitButton);
             this.Controls.Add(this.partQuantityNumBox);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.productPriceLabel);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.productDescriptionLabel);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.addressTextBox);
@@ -361,21 +320,17 @@
         private System.Windows.Forms.TextBox addressTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown partQuantityNumBox;
         private System.Windows.Forms.Button submitButton;
-        private System.Windows.Forms.ComboBox partDropDownBox2;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox partDropDownBox3;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox partDropDownBox4;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label productDescriptionLabel;
-        private System.Windows.Forms.Label productPriceLabel;
         private System.Windows.Forms.RadioButton emailOrderRadioButton;
         private System.Windows.Forms.RadioButton phoneOrderRadioButton;
         private System.Windows.Forms.RadioButton walkinOrderRadioButton;
+        private System.Windows.Forms.ListBox selectedItemsListBox;
+        private System.Windows.Forms.Button removeItemButton;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label orderTotalLabel;
     }
 }
 

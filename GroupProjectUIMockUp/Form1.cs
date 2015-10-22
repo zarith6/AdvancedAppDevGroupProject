@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace GroupProjectUIMockUp
 {
@@ -14,12 +15,13 @@ namespace GroupProjectUIMockUp
 
     public partial class Form1 : Form
     {
-        Part motorOil;
-        Part brakePads;
-        Part transmissionFluid;
+   //   Part motorOil;
+   //   Part brakePads;
+   //   Part transmissionFluid;
         bool newUser;
         OrderType typeOfOrder;
         User SubmitUser;
+        decimal orderTotal = 0;
 
         public Form1(bool isNewUser, User userInfo)
         {
@@ -32,19 +34,7 @@ namespace GroupProjectUIMockUp
             emailOrderRadioButton.Checked = true;
             
 
-            using (AutoPartsDbContext db = new AutoPartsDbContext())
-            {
-                var query = from parts in db.Parts
-                            select parts;
-
-                foreach (var item in query)
-                {
-                    partDropDownBox.Items.Add(item.Name);
-                    partDropDownBox2.Items.Add(item.Name);
-                    partDropDownBox3.Items.Add(item.Name);
-                    partDropDownBox4.Items.Add(item.Name);
-                }
-            }
+           
 
 
             if (isNewUser)
@@ -94,7 +84,7 @@ namespace GroupProjectUIMockUp
             phoneNumberTextBox.ReadOnly = true;
         }
 
-   * */
+   * Used for testing before DB existed
        
 
         private void populateDropDownBox()
@@ -112,10 +102,21 @@ namespace GroupProjectUIMockUp
             partDropDownBox4.Items.Add(transmissionFluid.Name);
             partDropDownBox4.Items.Add(brakePads.Name);
         }
-
+        */
         private void Form1_Load(object sender, EventArgs e)
         {
           //  populateDropDownBox();
+
+            using (AutoPartsDbContext db = new AutoPartsDbContext())
+            {
+                var query = from parts in db.Parts
+                            select parts;
+
+                foreach (var item in query)
+                {
+                    partDropDownBox.Items.Add(item.Name);
+                }
+            }
         }
 
         private void partDropDownBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -123,17 +124,20 @@ namespace GroupProjectUIMockUp
 
             using (AutoPartsDbContext db = new AutoPartsDbContext())
             {
-                if (partDropDownBox.SelectedItem.ToString() == "Motor Oil")
+                if (partDropDownBox.SelectedItem.ToString() == "MotorOil")
                 {
                     var query = from parts in db.Parts
-                                where parts.Name == "Motor Oil"
+                                where parts.Name == "MotorOil"
                                 select parts;
 
                     foreach (var item in query)
                     {
                         productDescriptionLabel.Text = item.Description;
-                        productPriceLabel.Text = "$" + item.Price.ToString();
+                        selectedItemsListBox.Items.Add(item.Name + "    $" + item.Price.ToString());
+                        orderTotal += item.Price;
+                        orderTotalLabel.Text = "$" + orderTotal.ToString();
                     }
+                    
                 }
                 else if (partDropDownBox.SelectedItem.ToString() == "Coolant")
                 {
@@ -144,19 +148,51 @@ namespace GroupProjectUIMockUp
                     foreach (var item in query)
                     {
                         productDescriptionLabel.Text = item.Description;
-                        productPriceLabel.Text = "$" + item.Price.ToString();
+                        selectedItemsListBox.Items.Add(item.Name + "    $" + item.Price.ToString());
+                        orderTotal += item.Price;
+                        orderTotalLabel.Text = "$" + orderTotal.ToString();
                     }
                 }
-                else if (partDropDownBox.SelectedItem.ToString() == "Brake Pads")
+                else if (partDropDownBox.SelectedItem.ToString() == "BrakePads")
                 {
                     var query = from parts in db.Parts
-                                where parts.Name == "Brake Pads"
+                                where parts.Name == "BrakePads"
                                 select parts;
 
                     foreach (var item in query)
                     {
                         productDescriptionLabel.Text = item.Description;
-                        productPriceLabel.Text = "$" + item.Price.ToString();
+                        selectedItemsListBox.Items.Add(item.Name + "    $" + item.Price.ToString());
+                        orderTotal += item.Price;
+                        orderTotalLabel.Text = "$" + orderTotal.ToString();
+                    }
+                }
+                else if (partDropDownBox.SelectedItem.ToString() == "Alternator")
+                {
+                    var query = from parts in db.Parts
+                                where parts.Name == "Alternator"
+                                select parts;
+
+                    foreach (var item in query)
+                    {
+                        productDescriptionLabel.Text = item.Description;
+                        selectedItemsListBox.Items.Add(item.Name + "    $" + item.Price.ToString());
+                        orderTotal += item.Price;
+                        orderTotalLabel.Text = "$" + orderTotal.ToString();
+                    }
+                }
+                else if (partDropDownBox.SelectedItem.ToString() == "SparkPlug")
+                {
+                    var query = from parts in db.Parts
+                                where parts.Name == "SparkPlug"
+                                select parts;
+
+                    foreach (var item in query)
+                    {
+                        productDescriptionLabel.Text = item.Description;
+                        selectedItemsListBox.Items.Add(item.Name + "    $" + item.Price.ToString());
+                        orderTotal += item.Price;
+                        orderTotalLabel.Text = "$" + orderTotal.ToString();
                     }
                 }
             }
@@ -164,10 +200,15 @@ namespace GroupProjectUIMockUp
 
         private void submitButton_Click(object sender, EventArgs e)
         {
-            if (newUser)
+            var r = new Regex(@"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}");
+
+            if (firstNameTextBox.Text != "" && lastNameTextBox.Text != "" && emailTextBox.Text != ""
+                && phoneNumberTextBox.Text != "" && addressTextBox.Text != "" && r.IsMatch(phoneNumberTextBox.Text))
             {
-                using (AutoPartsDbContext db = new AutoPartsDbContext())
+                if (newUser)
                 {
+                    using (AutoPartsDbContext db = new AutoPartsDbContext())
+                    {
 
                         SubmitUser = new User();
                         SubmitUser.Address = addressTextBox.Text;
@@ -177,38 +218,48 @@ namespace GroupProjectUIMockUp
                         SubmitUser.Email = emailTextBox.Text;
 
                         db.Users.Add(SubmitUser);
-                    //TODO Fix this. It's broken
-                    db.Orders.Add(new Order
-                    {
-                        OrderContents = partDropDownBox.SelectedItem.ToString() + "," +
-                                        partDropDownBox2.SelectedItem.ToString() + "," +
-                                        partDropDownBox3.SelectedItem.ToString() + "," +
-                                        partDropDownBox4.SelectedItem.ToString(),
-                        OrderQuantities = (int)partQuantityNumBox.Value,
-                        OrderType = typeOfOrder,
-                        User = SubmitUser,
-                    });
-                    db.SaveChanges();
+                        //TODO Fix this. It's broken
+
+                        string[] listOfSelectedItems = null;
+                        for (int i = 0; i < selectedItemsListBox.Items.Count; i++)
+                        {
+                            listOfSelectedItems[i] = selectedItemsListBox.Items[i].ToString();
+                        }
+
+                            try
+                            {
+                                db.Orders.Add(new Order
+                                {
+                                    OrderContents = listOfSelectedItems.ToString(),
+                                    OrderQuantities = (int)partQuantityNumBox.Value,
+                                    OrderType = typeOfOrder,
+                                    User = SubmitUser,
+                                });
+                            }
+                            catch { MessageBox.Show("Please select an item to order"); }
+                        db.SaveChanges();
+                    }
+                    MessageBox.Show("User created and order submitted!");
                 }
-                MessageBox.Show("User created and order submitted!");
+                else
+                {
+                    using (AutoPartsDbContext db = new AutoPartsDbContext())
+                    {
+                        db.Orders.Add(new Order
+                        {
+                            OrderContents = partDropDownBox.SelectedItem.ToString(),
+                            OrderQuantities = (int)partQuantityNumBox.Value,
+                            OrderType = typeOfOrder,
+                            User = SubmitUser,
+                        });
+                        db.SaveChanges();
+                    }
+                    MessageBox.Show("Order submitted!");
+                }
             }
             else
             {
-                using (AutoPartsDbContext db = new AutoPartsDbContext())
-                {
-                    db.Orders.Add(new Order
-                    {
-                        OrderContents = partDropDownBox.SelectedItem + "," +
-                                        partDropDownBox2.SelectedItem + "," +
-                                        partDropDownBox3.SelectedItem + "," +
-                                        partDropDownBox4.SelectedItem,
-                        OrderQuantities = (int)partQuantityNumBox.Value,
-                        OrderType = typeOfOrder,
-                        User = SubmitUser,
-                    });
-                    db.SaveChanges();
-                }
-                MessageBox.Show("Order submitted!");
+                MessageBox.Show("Please fill out all fields.");
             }
         }
 
@@ -225,6 +276,24 @@ namespace GroupProjectUIMockUp
         private void walkinOrderRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             typeOfOrder = OrderType.WALKIN;
+        }
+
+        private void removeItemButton_Click(object sender, EventArgs e)
+        {
+            if (selectedItemsListBox.SelectedItem != null)
+            {
+                char[] delimiter = {' ','$'};
+                string stringToSplit = selectedItemsListBox.SelectedItem.ToString();
+                string[] splitUpString = stringToSplit.Split(delimiter);
+                decimal amountToRemove = Convert.ToDecimal(splitUpString[5]);
+                orderTotal -= amountToRemove;
+                orderTotalLabel.Text = "$" + orderTotal.ToString();
+                selectedItemsListBox.Items.RemoveAt(selectedItemsListBox.SelectedIndex);
+            }
+            else
+            {
+                MessageBox.Show("Please select an item to remove.");
+            }
         }
 
 

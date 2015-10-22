@@ -32,14 +32,16 @@ namespace GroupProjectUIMockUp
             mainForm.Show();
             
         }
-/*  Only used to add parts to the database
- *  
-        private void addPartsButton_Click(object sender, EventArgs e)
+//  Only used to add parts to the database
+   
+        
+
+        private void addPartsButton_Click_1(object sender, EventArgs e)
         {
             var addParts = new AddParts();
             addParts.Show();
         }
- * 
- * */
+  
+ 
     }
 }
