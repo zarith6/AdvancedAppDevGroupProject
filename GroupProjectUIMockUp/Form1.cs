@@ -235,9 +235,10 @@ namespace GroupProjectUIMockUp
                         int count = 0;
                         string total = null;
                         
+                        //Still need to get this fixed. Count still causes quantlabel to go out of range
                         while (this.Controls["quantLabel" + count] != null || this.Controls["quantLabel" + count].Visible == true)
                         {
-                            if (count >= MAX_INDEX_OF_LABELS)
+                            if (count > MAX_INDEX_OF_LABELS)
                             {
                                 break;
                             }
@@ -274,20 +275,27 @@ namespace GroupProjectUIMockUp
 
                     int count = 0;
                     string total = null;
-                    
-                    while (this.Controls["quantLabel" + count] != null || this.Controls["quantLabel" + count].Visible == true)
-                    {
 
-                        if (count >= MAX_INDEX_OF_LABELS)
+
+
+
+                    //Still need to get this fixed. Count still causes quantlabel to go out of range
+                        while (this.Controls["quantLabel" + count] != null || this.Controls["quantLabel" + count].Visible == true)
                         {
-                            break;
+
+
+                            if (count >= MAX_INDEX_OF_LABELS)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                total += this.Controls["quantLabel" + count].Text + " ";
+                                count++;
+                            }
+
                         }
-                        else
-                        {
-                            total += this.Controls["quantLabel" + count].Text + " ";
-                            count++;
-                        }
-                    }
+                    
 
                     using (AutoPartsDbContext db = new AutoPartsDbContext())
                     {
