@@ -22,6 +22,7 @@ namespace GroupProjectUIMockUp
         OrderType typeOfOrder;
         User SubmitUser;
         decimal orderTotal = 0;
+        int labelToShow = 0;
 
         public Form1(bool isNewUser, User userInfo)
         {
@@ -106,6 +107,7 @@ namespace GroupProjectUIMockUp
         private void Form1_Load(object sender, EventArgs e)
         {
           //  populateDropDownBox();
+            
 
             using (AutoPartsDbContext db = new AutoPartsDbContext())
             {
@@ -121,6 +123,9 @@ namespace GroupProjectUIMockUp
 
         private void partDropDownBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.Controls["quantLabel" + labelToShow.ToString()].Visible = true;
+            labelToShow++;
+            
 
             using (AutoPartsDbContext db = new AutoPartsDbContext())
             {
@@ -219,19 +224,19 @@ namespace GroupProjectUIMockUp
 
                         db.Users.Add(SubmitUser);
                         //TODO Fix this. It's broken
-
-                        string[] listOfSelectedItems = null;
+                        string itemsToSubmit = null;
+                        
                         for (int i = 0; i < selectedItemsListBox.Items.Count; i++)
                         {
-                            listOfSelectedItems[i] = selectedItemsListBox.Items[i].ToString();
+                            itemsToSubmit += selectedItemsListBox.Items[i].ToString() + " ";
                         }
 
                             try
                             {
                                 db.Orders.Add(new Order
                                 {
-                                    OrderContents = listOfSelectedItems.ToString(),
-                                    OrderQuantities = (int)partQuantityNumBox.Value,
+                                    OrderContents = itemsToSubmit,
+                                   // OrderQuantities = (int)partQuantityNumBox.Value,
                                     OrderType = typeOfOrder,
                                     User = SubmitUser,
                                 });
@@ -243,12 +248,19 @@ namespace GroupProjectUIMockUp
                 }
                 else
                 {
+                    string itemsToSubmit = null;
+
+                    for (int i = 0; i < selectedItemsListBox.Items.Count; i++)
+                    {
+                        itemsToSubmit += selectedItemsListBox.Items[i].ToString() + " ";
+                    }
+
                     using (AutoPartsDbContext db = new AutoPartsDbContext())
                     {
                         db.Orders.Add(new Order
                         {
-                            OrderContents = partDropDownBox.SelectedItem.ToString(),
-                            OrderQuantities = (int)partQuantityNumBox.Value,
+                            OrderContents = itemsToSubmit,
+                            //OrderQuantities = (int)partQuantityNumBox.Value,
                             OrderType = typeOfOrder,
                             User = SubmitUser,
                         });
@@ -289,10 +301,24 @@ namespace GroupProjectUIMockUp
                 orderTotal -= amountToRemove;
                 orderTotalLabel.Text = "$" + orderTotal.ToString();
                 selectedItemsListBox.Items.RemoveAt(selectedItemsListBox.SelectedIndex);
+                labelToShow--;
+                this.Controls["quantLabel" + labelToShow.ToString()].Visible = false;
+                this.Controls["quantLabel" + labelToShow.ToString()].Text = "1";
+                
             }
             else
             {
                 MessageBox.Show("Please select an item to remove.");
+            }
+        }
+
+        private void plusOneButton_Click(object sender, EventArgs e)
+        {
+            if (selectedItemsListBox.SelectedItem != null)
+            {
+               int getQuantity = Convert.ToInt32(this.Controls["quantLabel" + selectedItemsListBox.SelectedIndex.ToString()].Text);
+               getQuantity++;
+               this.Controls["quantLabel" + selectedItemsListBox.SelectedIndex.ToString()].Text = getQuantity.ToString();
             }
         }
 

@@ -41,8 +41,6 @@
             this.addressTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.partQuantityNumBox = new System.Windows.Forms.NumericUpDown();
             this.submitButton = new System.Windows.Forms.Button();
             this.productDescriptionLabel = new System.Windows.Forms.Label();
             this.emailOrderRadioButton = new System.Windows.Forms.RadioButton();
@@ -52,7 +50,12 @@
             this.removeItemButton = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.orderTotalLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.partQuantityNumBox)).BeginInit();
+            this.plusOneButton = new System.Windows.Forms.Button();
+            this.quantLabel0 = new System.Windows.Forms.Label();
+            this.quantLabel1 = new System.Windows.Forms.Label();
+            this.quantLabel2 = new System.Windows.Forms.Label();
+            this.quantLabel3 = new System.Windows.Forms.Label();
+            this.quantLabel4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -156,31 +159,15 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 250);
+            this.label7.Location = new System.Drawing.Point(12, 200);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(103, 13);
             this.label7.TabIndex = 14;
             this.label7.Text = "Product Description:";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(9, 210);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(49, 13);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "Quantity:";
-            // 
-            // partQuantityNumBox
-            // 
-            this.partQuantityNumBox.Location = new System.Drawing.Point(9, 227);
-            this.partQuantityNumBox.Name = "partQuantityNumBox";
-            this.partQuantityNumBox.Size = new System.Drawing.Size(120, 20);
-            this.partQuantityNumBox.TabIndex = 19;
-            // 
             // submitButton
             // 
-            this.submitButton.Location = new System.Drawing.Point(216, 257);
+            this.submitButton.Location = new System.Drawing.Point(216, 204);
             this.submitButton.Name = "submitButton";
             this.submitButton.Size = new System.Drawing.Size(138, 40);
             this.submitButton.TabIndex = 20;
@@ -191,7 +178,7 @@
             // productDescriptionLabel
             // 
             this.productDescriptionLabel.AutoSize = true;
-            this.productDescriptionLabel.Location = new System.Drawing.Point(12, 263);
+            this.productDescriptionLabel.Location = new System.Drawing.Point(16, 213);
             this.productDescriptionLabel.Name = "productDescriptionLabel";
             this.productDescriptionLabel.Size = new System.Drawing.Size(0, 13);
             this.productDescriptionLabel.TabIndex = 15;
@@ -237,14 +224,14 @@
             this.selectedItemsListBox.FormattingEnabled = true;
             this.selectedItemsListBox.Location = new System.Drawing.Point(216, 129);
             this.selectedItemsListBox.Name = "selectedItemsListBox";
-            this.selectedItemsListBox.Size = new System.Drawing.Size(138, 121);
+            this.selectedItemsListBox.Size = new System.Drawing.Size(116, 69);
             this.selectedItemsListBox.TabIndex = 30;
             // 
             // removeItemButton
             // 
-            this.removeItemButton.Location = new System.Drawing.Point(363, 128);
+            this.removeItemButton.Location = new System.Drawing.Point(357, 129);
             this.removeItemButton.Name = "removeItemButton";
-            this.removeItemButton.Size = new System.Drawing.Size(43, 41);
+            this.removeItemButton.Size = new System.Drawing.Size(43, 30);
             this.removeItemButton.TabIndex = 31;
             this.removeItemButton.Text = "X";
             this.removeItemButton.UseVisualStyleBackColor = true;
@@ -253,7 +240,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(9, 275);
+            this.label8.Location = new System.Drawing.Point(13, 225);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(63, 13);
             this.label8.TabIndex = 32;
@@ -262,16 +249,82 @@
             // orderTotalLabel
             // 
             this.orderTotalLabel.AutoSize = true;
-            this.orderTotalLabel.Location = new System.Drawing.Point(9, 290);
+            this.orderTotalLabel.Location = new System.Drawing.Point(13, 240);
             this.orderTotalLabel.Name = "orderTotalLabel";
             this.orderTotalLabel.Size = new System.Drawing.Size(0, 13);
             this.orderTotalLabel.TabIndex = 33;
+            // 
+            // plusOneButton
+            // 
+            this.plusOneButton.Location = new System.Drawing.Point(357, 165);
+            this.plusOneButton.Name = "plusOneButton";
+            this.plusOneButton.Size = new System.Drawing.Size(43, 33);
+            this.plusOneButton.TabIndex = 34;
+            this.plusOneButton.Text = "+1";
+            this.plusOneButton.UseVisualStyleBackColor = true;
+            this.plusOneButton.Click += new System.EventHandler(this.plusOneButton_Click);
+            // 
+            // quantLabel0
+            // 
+            this.quantLabel0.AutoSize = true;
+            this.quantLabel0.Location = new System.Drawing.Point(338, 133);
+            this.quantLabel0.Name = "quantLabel0";
+            this.quantLabel0.Size = new System.Drawing.Size(13, 13);
+            this.quantLabel0.TabIndex = 35;
+            this.quantLabel0.Text = "1";
+            this.quantLabel0.Visible = false;
+            // 
+            // quantLabel1
+            // 
+            this.quantLabel1.AutoSize = true;
+            this.quantLabel1.Location = new System.Drawing.Point(338, 146);
+            this.quantLabel1.Name = "quantLabel1";
+            this.quantLabel1.Size = new System.Drawing.Size(13, 13);
+            this.quantLabel1.TabIndex = 36;
+            this.quantLabel1.Text = "1";
+            this.quantLabel1.Visible = false;
+            // 
+            // quantLabel2
+            // 
+            this.quantLabel2.AutoSize = true;
+            this.quantLabel2.Location = new System.Drawing.Point(338, 159);
+            this.quantLabel2.Name = "quantLabel2";
+            this.quantLabel2.Size = new System.Drawing.Size(13, 13);
+            this.quantLabel2.TabIndex = 37;
+            this.quantLabel2.Text = "1";
+            this.quantLabel2.Visible = false;
+            // 
+            // quantLabel3
+            // 
+            this.quantLabel3.AutoSize = true;
+            this.quantLabel3.Location = new System.Drawing.Point(338, 172);
+            this.quantLabel3.Name = "quantLabel3";
+            this.quantLabel3.Size = new System.Drawing.Size(13, 13);
+            this.quantLabel3.TabIndex = 38;
+            this.quantLabel3.Text = "1";
+            this.quantLabel3.Visible = false;
+            // 
+            // quantLabel4
+            // 
+            this.quantLabel4.AutoSize = true;
+            this.quantLabel4.Location = new System.Drawing.Point(338, 185);
+            this.quantLabel4.Name = "quantLabel4";
+            this.quantLabel4.Size = new System.Drawing.Size(13, 13);
+            this.quantLabel4.TabIndex = 39;
+            this.quantLabel4.Text = "1";
+            this.quantLabel4.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 312);
+            this.ClientSize = new System.Drawing.Size(410, 263);
+            this.Controls.Add(this.quantLabel4);
+            this.Controls.Add(this.quantLabel3);
+            this.Controls.Add(this.quantLabel2);
+            this.Controls.Add(this.quantLabel1);
+            this.Controls.Add(this.quantLabel0);
+            this.Controls.Add(this.plusOneButton);
             this.Controls.Add(this.orderTotalLabel);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.removeItemButton);
@@ -280,8 +333,6 @@
             this.Controls.Add(this.phoneOrderRadioButton);
             this.Controls.Add(this.emailOrderRadioButton);
             this.Controls.Add(this.submitButton);
-            this.Controls.Add(this.partQuantityNumBox);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.productDescriptionLabel);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.addressTextBox);
@@ -299,7 +350,6 @@
             this.Name = "Form1";
             this.Text = "Auto Part Order Form";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.partQuantityNumBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -320,8 +370,6 @@
         private System.Windows.Forms.TextBox addressTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.NumericUpDown partQuantityNumBox;
         private System.Windows.Forms.Button submitButton;
         private System.Windows.Forms.Label productDescriptionLabel;
         private System.Windows.Forms.RadioButton emailOrderRadioButton;
@@ -331,6 +379,12 @@
         private System.Windows.Forms.Button removeItemButton;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label orderTotalLabel;
+        private System.Windows.Forms.Button plusOneButton;
+        private System.Windows.Forms.Label quantLabel0;
+        private System.Windows.Forms.Label quantLabel1;
+        private System.Windows.Forms.Label quantLabel2;
+        private System.Windows.Forms.Label quantLabel3;
+        private System.Windows.Forms.Label quantLabel4;
     }
 }
 
