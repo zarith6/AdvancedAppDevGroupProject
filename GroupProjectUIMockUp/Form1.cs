@@ -231,14 +231,22 @@ namespace GroupProjectUIMockUp
                             itemsToSubmit += selectedItemsListBox.Items[i].ToString() + " ";
                         }
 
+                        int count = 0;
+                        string total = null;
+                        while (this.Controls["quantLabel" + count].Visible == true)
+                        {
+                            total += Convert.ToInt32(this.Controls["quantLabel" + count].Text);
+                            count++;
+                        }
+
                             try
                             {
                                 db.Orders.Add(new Order
                                 {
                                     OrderContents = itemsToSubmit,
-                                   // OrderQuantities = (int)partQuantityNumBox.Value,
+                                    OrderQuantities = total,
                                     OrderType = typeOfOrder,
-                                    User = SubmitUser,
+                                    //User = SubmitUser,
                                 });
                             }
                             catch { MessageBox.Show("Please select an item to order"); }
@@ -255,14 +263,22 @@ namespace GroupProjectUIMockUp
                         itemsToSubmit += selectedItemsListBox.Items[i].ToString() + " ";
                     }
 
+                    int count = 0;
+                    string total = null;
+                    while (this.Controls["quantLabel" + count].Visible == true)
+                    {
+                        total += this.Controls["quantLabel" + count].Text + " ";
+                        count++;
+                    }
+
                     using (AutoPartsDbContext db = new AutoPartsDbContext())
                     {
                         db.Orders.Add(new Order
                         {
                             OrderContents = itemsToSubmit,
-                            //OrderQuantities = (int)partQuantityNumBox.Value,
+                            OrderQuantities = total,
                             OrderType = typeOfOrder,
-                            User = SubmitUser,
+                            //User = SubmitUser,
                         });
                         db.SaveChanges();
                     }

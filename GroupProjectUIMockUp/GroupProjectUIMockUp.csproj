@@ -100,6 +100,14 @@
     <Compile Include="Migrations\201510222012061_OrderTypeFix.Designer.cs">
       <DependentUpon>201510222012061_OrderTypeFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510231637157_RemovedForeignKey.cs" />
+    <Compile Include="Migrations\201510231637157_RemovedForeignKey.Designer.cs">
+      <DependentUpon>201510231637157_RemovedForeignKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510231705479_QuantitiesAreStringsNow.cs" />
+    <Compile Include="Migrations\201510231705479_QuantitiesAreStringsNow.Designer.cs">
+      <DependentUpon>201510231705479_QuantitiesAreStringsNow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OrderType.cs" />
     <Compile Include="Part.cs" />
@@ -140,6 +148,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510222012061_OrderTypeFix.resx">
       <DependentUpon>201510222012061_OrderTypeFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510231637157_RemovedForeignKey.resx">
+      <DependentUpon>201510231637157_RemovedForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510231705479_QuantitiesAreStringsNow.resx">
+      <DependentUpon>201510231705479_QuantitiesAreStringsNow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PhoneNumber.resx">
       <DependentUpon>PhoneNumber.cs</DependentUpon>

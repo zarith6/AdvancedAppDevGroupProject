@@ -24,10 +24,10 @@ namespace GroupProjectUIMockUp
     {
         public int OrderID { get; set; }
         public string OrderContents { get; set; }
-        public int OrderQuantities { get; set; }
+        public string OrderQuantities { get; set; }
         public int UserID { get; set; }
-        [ForeignKey("UserID")]
-        public virtual User User { get; set; }
+       // [ForeignKey("UserID")]
+      //  public virtual User User { get; set; }
         public OrderType OrderType { get; set; }
     }
 
