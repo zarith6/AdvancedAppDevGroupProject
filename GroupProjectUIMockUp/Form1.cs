@@ -23,6 +23,7 @@ namespace GroupProjectUIMockUp
         User SubmitUser;
         decimal orderTotal = 0;
         int labelToShow = 0;
+        const int MAX_INDEX_OF_LABELS = 4;
 
         public Form1(bool isNewUser, User userInfo)
         {
@@ -223,7 +224,7 @@ namespace GroupProjectUIMockUp
                         SubmitUser.Email = emailTextBox.Text;
 
                         db.Users.Add(SubmitUser);
-                        //TODO Fix this. It's broken
+                        
                         string itemsToSubmit = null;
                         
                         for (int i = 0; i < selectedItemsListBox.Items.Count; i++)
@@ -233,10 +234,18 @@ namespace GroupProjectUIMockUp
 
                         int count = 0;
                         string total = null;
-                        while (this.Controls["quantLabel" + count].Visible == true)
+                        
+                        while (this.Controls["quantLabel" + count] != null || this.Controls["quantLabel" + count].Visible == true)
                         {
-                            total += Convert.ToInt32(this.Controls["quantLabel" + count].Text);
-                            count++;
+                            if (count >= MAX_INDEX_OF_LABELS)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                total += this.Controls["quantLabel" + count].Text + " ";
+                                count++;
+                            }
                         }
 
                             try
@@ -265,10 +274,19 @@ namespace GroupProjectUIMockUp
 
                     int count = 0;
                     string total = null;
-                    while (this.Controls["quantLabel" + count].Visible == true)
+                    
+                    while (this.Controls["quantLabel" + count] != null || this.Controls["quantLabel" + count].Visible == true)
                     {
-                        total += this.Controls["quantLabel" + count].Text + " ";
-                        count++;
+
+                        if (count >= MAX_INDEX_OF_LABELS)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            total += this.Controls["quantLabel" + count].Text + " ";
+                            count++;
+                        }
                     }
 
                     using (AutoPartsDbContext db = new AutoPartsDbContext())
