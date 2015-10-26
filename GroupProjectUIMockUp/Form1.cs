@@ -235,14 +235,14 @@ namespace GroupProjectUIMockUp
                         int count = 0;
                         string total = null;
                         
-                        //Still need to get this fixed. Count still causes quantlabel to go out of range
-                        while (this.Controls["quantLabel" + count] != null || this.Controls["quantLabel" + count].Visible == true)
+                        
+                        while (this.Controls["quantLabel" + count] != null)
                         {
                             if (count > MAX_INDEX_OF_LABELS)
                             {
                                 break;
                             }
-                            else
+                            else if (this.Controls["quantLabel" + count].Visible == true)
                             {
                                 total += this.Controls["quantLabel" + count].Text + " ";
                                 count++;
@@ -279,22 +279,19 @@ namespace GroupProjectUIMockUp
 
 
 
-                    //Still need to get this fixed. Count still causes quantlabel to go out of range
-                        while (this.Controls["quantLabel" + count] != null || this.Controls["quantLabel" + count].Visible == true)
+                   
+                    while (this.Controls["quantLabel" + count] != null)
+                    {
+                        if (count > MAX_INDEX_OF_LABELS)
                         {
-
-
-                            if (count >= MAX_INDEX_OF_LABELS)
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                total += this.Controls["quantLabel" + count].Text + " ";
-                                count++;
-                            }
-
+                            break;
                         }
+                        else if (this.Controls["quantLabel" + count].Visible == true)
+                        {
+                            total += this.Controls["quantLabel" + count].Text + " ";
+                            count++;
+                        }
+                    }
                     
 
                     using (AutoPartsDbContext db = new AutoPartsDbContext())
