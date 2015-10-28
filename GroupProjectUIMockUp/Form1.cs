@@ -124,81 +124,85 @@ namespace GroupProjectUIMockUp
 
         private void partDropDownBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.Controls["quantLabel" + labelToShow.ToString()].Visible = true;
-            labelToShow++;
-            
+            int index = selectedItemsListBox.FindString(partDropDownBox.SelectedItem.ToString());
 
-            using (AutoPartsDbContext db = new AutoPartsDbContext())
+            if(index == -1)
             {
-                if (partDropDownBox.SelectedItem.ToString() == "MotorOil")
-                {
-                    var query = from parts in db.Parts
-                                where parts.Name == "MotorOil"
-                                select parts;
+                this.Controls["quantLabel" + labelToShow.ToString()].Visible = true;
+                labelToShow++;
 
-                    foreach (var item in query)
+                using (AutoPartsDbContext db = new AutoPartsDbContext())
+                {
+                    if (partDropDownBox.SelectedItem.ToString() == "MotorOil")
                     {
-                        productDescriptionLabel.Text = item.Description;
-                        selectedItemsListBox.Items.Add(item.Name + "    $" + item.Price.ToString());
-                        orderTotal += item.Price;
-                        orderTotalLabel.Text = "$" + orderTotal.ToString();
+                        var query = from parts in db.Parts
+                                    where parts.Name == "MotorOil"
+                                    select parts;
+
+                        foreach (var item in query)
+                        {
+                            productDescriptionLabel.Text = item.Description;
+                            selectedItemsListBox.Items.Add(item.Name + "    $" + item.Price.ToString());
+                            orderTotal += item.Price;
+                            orderTotalLabel.Text = "$" + orderTotal.ToString();
+                        }
+
                     }
-                    
-                }
-                else if (partDropDownBox.SelectedItem.ToString() == "Coolant")
-                {
-                    var query = from parts in db.Parts
-                                where parts.Name == "Coolant"
-                                select parts;
-
-                    foreach (var item in query)
+                    else if (partDropDownBox.SelectedItem.ToString() == "Coolant")
                     {
-                        productDescriptionLabel.Text = item.Description;
-                        selectedItemsListBox.Items.Add(item.Name + "    $" + item.Price.ToString());
-                        orderTotal += item.Price;
-                        orderTotalLabel.Text = "$" + orderTotal.ToString();
+                        var query = from parts in db.Parts
+                                    where parts.Name == "Coolant"
+                                    select parts;
+
+                        foreach (var item in query)
+                        {
+                            productDescriptionLabel.Text = item.Description;
+                            selectedItemsListBox.Items.Add(item.Name + "    $" + item.Price.ToString());
+                            orderTotal += item.Price;
+                            orderTotalLabel.Text = "$" + orderTotal.ToString();
+                        }
                     }
-                }
-                else if (partDropDownBox.SelectedItem.ToString() == "BrakePads")
-                {
-                    var query = from parts in db.Parts
-                                where parts.Name == "BrakePads"
-                                select parts;
-
-                    foreach (var item in query)
+                    else if (partDropDownBox.SelectedItem.ToString() == "BrakePads")
                     {
-                        productDescriptionLabel.Text = item.Description;
-                        selectedItemsListBox.Items.Add(item.Name + "    $" + item.Price.ToString());
-                        orderTotal += item.Price;
-                        orderTotalLabel.Text = "$" + orderTotal.ToString();
+                        var query = from parts in db.Parts
+                                    where parts.Name == "BrakePads"
+                                    select parts;
+
+                        foreach (var item in query)
+                        {
+                            productDescriptionLabel.Text = item.Description;
+                            selectedItemsListBox.Items.Add(item.Name + "    $" + item.Price.ToString());
+                            orderTotal += item.Price;
+                            orderTotalLabel.Text = "$" + orderTotal.ToString();
+                        }
                     }
-                }
-                else if (partDropDownBox.SelectedItem.ToString() == "Alternator")
-                {
-                    var query = from parts in db.Parts
-                                where parts.Name == "Alternator"
-                                select parts;
-
-                    foreach (var item in query)
+                    else if (partDropDownBox.SelectedItem.ToString() == "Alternator")
                     {
-                        productDescriptionLabel.Text = item.Description;
-                        selectedItemsListBox.Items.Add(item.Name + "    $" + item.Price.ToString());
-                        orderTotal += item.Price;
-                        orderTotalLabel.Text = "$" + orderTotal.ToString();
+                        var query = from parts in db.Parts
+                                    where parts.Name == "Alternator"
+                                    select parts;
+
+                        foreach (var item in query)
+                        {
+                            productDescriptionLabel.Text = item.Description;
+                            selectedItemsListBox.Items.Add(item.Name + "    $" + item.Price.ToString());
+                            orderTotal += item.Price;
+                            orderTotalLabel.Text = "$" + orderTotal.ToString();
+                        }
                     }
-                }
-                else if (partDropDownBox.SelectedItem.ToString() == "SparkPlug")
-                {
-                    var query = from parts in db.Parts
-                                where parts.Name == "SparkPlug"
-                                select parts;
-
-                    foreach (var item in query)
+                    else if (partDropDownBox.SelectedItem.ToString() == "SparkPlug")
                     {
-                        productDescriptionLabel.Text = item.Description;
-                        selectedItemsListBox.Items.Add(item.Name + "    $" + item.Price.ToString());
-                        orderTotal += item.Price;
-                        orderTotalLabel.Text = "$" + orderTotal.ToString();
+                        var query = from parts in db.Parts
+                                    where parts.Name == "SparkPlug"
+                                    select parts;
+
+                        foreach (var item in query)
+                        {
+                            productDescriptionLabel.Text = item.Description;
+                            selectedItemsListBox.Items.Add(item.Name + "    $" + item.Price.ToString());
+                            orderTotal += item.Price;
+                            orderTotalLabel.Text = "$" + orderTotal.ToString();
+                        }
                     }
                 }
             }
