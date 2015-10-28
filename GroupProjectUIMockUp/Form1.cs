@@ -361,6 +361,19 @@ namespace GroupProjectUIMockUp
             }
         }
 
+        private void removeOneButton_Click(object sender, EventArgs e)
+        {
+            if (selectedItemsListBox.SelectedItem != null)
+            {
+                int getQuantity = Convert.ToInt32(this.Controls["quantLabel" + selectedItemsListBox.SelectedIndex.ToString()].Text);
+                getQuantity--;
+                if (getQuantity > 0)
+                {
+                    this.Controls["quantLabel" + selectedItemsListBox.SelectedIndex.ToString()].Text = getQuantity.ToString();
+                }
+            }
+        }
+
 
     }
 }

@@ -56,6 +56,7 @@
             this.quantLabel2 = new System.Windows.Forms.Label();
             this.quantLabel3 = new System.Windows.Forms.Label();
             this.quantLabel4 = new System.Windows.Forms.Label();
+            this.removeOneButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -102,7 +103,7 @@
             // partDropDownBox
             // 
             this.partDropDownBox.FormattingEnabled = true;
-            this.partDropDownBox.Location = new System.Drawing.Point(214, 103);
+            this.partDropDownBox.Location = new System.Drawing.Point(216, 103);
             this.partDropDownBox.Name = "partDropDownBox";
             this.partDropDownBox.Size = new System.Drawing.Size(138, 21);
             this.partDropDownBox.TabIndex = 5;
@@ -229,9 +230,9 @@
             // 
             // removeItemButton
             // 
-            this.removeItemButton.Location = new System.Drawing.Point(357, 129);
+            this.removeItemButton.Location = new System.Drawing.Point(357, 153);
             this.removeItemButton.Name = "removeItemButton";
-            this.removeItemButton.Size = new System.Drawing.Size(43, 30);
+            this.removeItemButton.Size = new System.Drawing.Size(43, 23);
             this.removeItemButton.TabIndex = 31;
             this.removeItemButton.Text = "X";
             this.removeItemButton.UseVisualStyleBackColor = true;
@@ -256,9 +257,9 @@
             // 
             // plusOneButton
             // 
-            this.plusOneButton.Location = new System.Drawing.Point(357, 165);
+            this.plusOneButton.Location = new System.Drawing.Point(357, 176);
             this.plusOneButton.Name = "plusOneButton";
-            this.plusOneButton.Size = new System.Drawing.Size(43, 33);
+            this.plusOneButton.Size = new System.Drawing.Size(43, 22);
             this.plusOneButton.TabIndex = 34;
             this.plusOneButton.Text = "+1";
             this.plusOneButton.UseVisualStyleBackColor = true;
@@ -314,11 +315,22 @@
             this.quantLabel4.Text = "1";
             this.quantLabel4.Visible = false;
             // 
+            // removeOneButton
+            // 
+            this.removeOneButton.Location = new System.Drawing.Point(357, 129);
+            this.removeOneButton.Name = "removeOneButton";
+            this.removeOneButton.Size = new System.Drawing.Size(43, 22);
+            this.removeOneButton.TabIndex = 40;
+            this.removeOneButton.Text = "-1";
+            this.removeOneButton.UseVisualStyleBackColor = true;
+            this.removeOneButton.Click += new System.EventHandler(this.removeOneButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(410, 263);
+            this.Controls.Add(this.removeOneButton);
             this.Controls.Add(this.quantLabel4);
             this.Controls.Add(this.quantLabel3);
             this.Controls.Add(this.quantLabel2);
@@ -385,6 +397,7 @@
         private System.Windows.Forms.Label quantLabel2;
         private System.Windows.Forms.Label quantLabel3;
         private System.Windows.Forms.Label quantLabel4;
+        private System.Windows.Forms.Button removeOneButton;
     }
 }
 
