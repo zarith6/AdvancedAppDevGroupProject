@@ -82,14 +82,14 @@
             this.firstNameTextBox.Location = new System.Drawing.Point(12, 25);
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(138, 20);
-            this.firstNameTextBox.TabIndex = 2;
+            this.firstNameTextBox.TabIndex = 0;
             // 
             // emailTextBox
             // 
             this.emailTextBox.Location = new System.Drawing.Point(12, 64);
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(138, 20);
-            this.emailTextBox.TabIndex = 3;
+            this.emailTextBox.TabIndex = 2;
             // 
             // label3
             // 
@@ -123,7 +123,7 @@
             this.lastNameTextBox.Location = new System.Drawing.Point(216, 25);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(138, 20);
-            this.lastNameTextBox.TabIndex = 7;
+            this.lastNameTextBox.TabIndex = 1;
             // 
             // label5
             // 
@@ -139,14 +139,14 @@
             this.phoneNumberTextBox.Location = new System.Drawing.Point(216, 64);
             this.phoneNumberTextBox.Name = "phoneNumberTextBox";
             this.phoneNumberTextBox.Size = new System.Drawing.Size(138, 20);
-            this.phoneNumberTextBox.TabIndex = 9;
+            this.phoneNumberTextBox.TabIndex = 3;
             // 
             // addressTextBox
             // 
-            this.addressTextBox.Location = new System.Drawing.Point(15, 103);
+            this.addressTextBox.Location = new System.Drawing.Point(12, 103);
             this.addressTextBox.Name = "addressTextBox";
             this.addressTextBox.Size = new System.Drawing.Size(138, 20);
-            this.addressTextBox.TabIndex = 11;
+            this.addressTextBox.TabIndex = 4;
             // 
             // label6
             // 

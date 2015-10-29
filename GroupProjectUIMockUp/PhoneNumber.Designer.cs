@@ -49,7 +49,7 @@
             this.phoneNumberTextBox.Location = new System.Drawing.Point(12, 25);
             this.phoneNumberTextBox.Name = "phoneNumberTextBox";
             this.phoneNumberTextBox.Size = new System.Drawing.Size(133, 20);
-            this.phoneNumberTextBox.TabIndex = 1;
+            this.phoneNumberTextBox.TabIndex = 0;
             // 
             // button1
             // 
@@ -75,7 +75,7 @@
             this.firstNameTextBox.Location = new System.Drawing.Point(12, 64);
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(133, 20);
-            this.firstNameTextBox.TabIndex = 4;
+            this.firstNameTextBox.TabIndex = 1;
             // 
             // PhoneNumber
             // 
