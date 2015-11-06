@@ -34,7 +34,7 @@ namespace GroupProjectUIMockUp
         }
 //  Only used to add parts to the database
    
-        
+     /*   
 
         private void addPartsButton_Click_1(object sender, EventArgs e)
         {
@@ -42,6 +42,6 @@ namespace GroupProjectUIMockUp
             addParts.Show();
         }
   
- 
+ */
     }
 }

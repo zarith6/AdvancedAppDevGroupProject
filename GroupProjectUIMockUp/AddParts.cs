@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GroupProjectUIMockUp
-{
+{   //*****************************************************************************************************************
+    //* This class only existed so I could add parts to the database easily. It's unnecessary now that it's been done.*
+    //*****************************************************************************************************************
+
     public partial class AddParts : Form
     {
         public AddParts()

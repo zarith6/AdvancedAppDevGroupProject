@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GroupProjectUIMockUp
 {
+    //Enum used to make it easier to deal with order types in the database
     public enum OrderType
     {
         EMAIL = 0,

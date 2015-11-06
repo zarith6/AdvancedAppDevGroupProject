@@ -18,6 +18,8 @@ namespace GroupProjectUIMockUp
    //   Part motorOil;
    //   Part brakePads;
    //   Part transmissionFluid;
+
+        //Initalize/declare variables
         bool newUser;
         OrderType typeOfOrder;
         User SubmitUser;
@@ -38,7 +40,7 @@ namespace GroupProjectUIMockUp
 
            
 
-
+            //If it's a new user, open up the forms for user info
             if (isNewUser)
             {
                 emailTextBox.ReadOnly = false;
@@ -47,6 +49,7 @@ namespace GroupProjectUIMockUp
                 newUser = true;
                 
             }
+            //If existing user fill the forms with the user's info and grey them out
             else
             {
                 emailTextBox.ReadOnly = true;
@@ -62,7 +65,7 @@ namespace GroupProjectUIMockUp
                 partDropDownBox.Focus();
                 newUser = false;
                 SubmitUser = userInfo;
-
+                
             }
         }
 
@@ -86,7 +89,7 @@ namespace GroupProjectUIMockUp
             phoneNumberTextBox.ReadOnly = true;
         }
 
-   * Used for testing before DB existed
+   * Used for testing before DB existed *
        
 
         private void populateDropDownBox()
@@ -109,7 +112,7 @@ namespace GroupProjectUIMockUp
         {
           //  populateDropDownBox();
             
-
+            //Populates combobox with items pulled from DB
             using (AutoPartsDbContext db = new AutoPartsDbContext())
             {
                 var query = from parts in db.Parts
@@ -122,10 +125,12 @@ namespace GroupProjectUIMockUp
             }
         }
 
+        
         private void partDropDownBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Get selected index
             int index = selectedItemsListBox.FindString(partDropDownBox.SelectedItem.ToString());
-
+            //if not an invalid selection display counter next to item, pull item from db, add to selected items and display info
             if(index == -1)
             {
                 this.Controls["quantLabel" + labelToShow.ToString()].Visible = true;
@@ -210,6 +215,7 @@ namespace GroupProjectUIMockUp
 
         private void submitButton_Click(object sender, EventArgs e)
         {
+            //Various bits of validation
             var r = new Regex(@"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}");
 
             if (firstNameTextBox.Text != "" && lastNameTextBox.Text != "" && emailTextBox.Text != ""
@@ -219,7 +225,7 @@ namespace GroupProjectUIMockUp
                 {
                     using (AutoPartsDbContext db = new AutoPartsDbContext())
                     {
-
+                        //if new user, add a new user to the db with info from the forms
                         SubmitUser = new User();
                         SubmitUser.Address = addressTextBox.Text;
                         SubmitUser.FirstName = firstNameTextBox.Text;
@@ -231,6 +237,7 @@ namespace GroupProjectUIMockUp
                         
                         string itemsToSubmit = null;
                         
+                        //Construct a string containing the itmes from the selected items box
                         for (int i = 0; i < selectedItemsListBox.Items.Count; i++)
                         {
                             itemsToSubmit += selectedItemsListBox.Items[i].ToString() + " ";
@@ -239,7 +246,7 @@ namespace GroupProjectUIMockUp
                         int count = 0;
                         string total = null;
                         
-                        
+                        //Gets the total values of each item based off of the value of the counter next to it
                         while (this.Controls["quantLabel" + count] != null)
                         {
                             if (count > MAX_INDEX_OF_LABELS)
@@ -252,7 +259,7 @@ namespace GroupProjectUIMockUp
                                 count++;
                             }
                         }
-
+                        //Add order to DB using info gained in previous logic and save changes to DB
                             try
                             {
                                 db.Orders.Add(new Order
@@ -268,6 +275,7 @@ namespace GroupProjectUIMockUp
                     }
                     MessageBox.Show("User created and order submitted!");
                 }
+                //Same thing, but without creating a new user entry
                 else
                 {
                     string itemsToSubmit = null;
@@ -337,6 +345,7 @@ namespace GroupProjectUIMockUp
         {
             if (selectedItemsListBox.SelectedItem != null)
             {
+                //Removes an item from the selected items box, and updates the total value of the order
                 char[] delimiter = {' ','$'};
                 string stringToSplit = selectedItemsListBox.SelectedItem.ToString();
                 string[] splitUpString = stringToSplit.Split(delimiter);
@@ -354,7 +363,7 @@ namespace GroupProjectUIMockUp
                 MessageBox.Show("Please select an item to remove.");
             }
         }
-
+        //Increments the quantity label on the selected item
         private void plusOneButton_Click(object sender, EventArgs e)
         {
             if (selectedItemsListBox.SelectedItem != null)
@@ -364,7 +373,7 @@ namespace GroupProjectUIMockUp
                this.Controls["quantLabel" + selectedItemsListBox.SelectedIndex.ToString()].Text = getQuantity.ToString();
             }
         }
-
+        //Removes one from the quantity label on the selected item
         private void removeOneButton_Click(object sender, EventArgs e)
         {
             if (selectedItemsListBox.SelectedItem != null)

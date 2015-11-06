@@ -21,12 +21,14 @@ namespace GroupProjectUIMockUp
         {
             using (AutoPartsDbContext db = new AutoPartsDbContext())
             {
+                //Query db to see if submitted info matches an existing user
                 var query = from users in db.Users
                             where users.PhoneNumber == phoneNumberTextBox.Text && users.FirstName == firstNameTextBox.Text
                             select users;
 
                 if (query.Count() != 0)
                 {
+                    //if user exists, create temporary user object with info pulled from db and pass it into form1
                     User tempUser = new User();
                     foreach (var item in query)
                     {
